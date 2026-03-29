@@ -56,6 +56,8 @@ Copy `backend/.env.example` into Vercel environment variables:
 - `CLOUDINARY_API_SECRET`
 - `CLOUDINARY_DISHES_FOLDER`
 
+The backend app includes [backend/vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/backend/vercel.json) so a separate backend Vercel project does not inherit a stale static output directory like `public`.
+
 ### Admin project
 
 Copy `admin/.env.example` into Vercel environment variables:
