@@ -1,0 +1,15 @@
+{
+  "name": "canteen-management-system",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "workspaces": [
+    "admin",
+    "backend",
+    "student"
+  ],
+  "scripts": {
+    "build": "node scripts/vercel-build.mjs"
+  }
+}

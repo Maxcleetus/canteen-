@@ -1,12 +1,31 @@
 # Canteen Management System
 
-This repo is structured to deploy on Vercel as a monorepo with three separate projects:
+This repo can now deploy on Vercel in two ways:
 
-- `backend`: Express API deployed from `src/app.ts` as a Vercel Function
-- `admin`: Vite admin dashboard
-- `student`: Vite student portal
+- as one root Vercel project with:
+  - `/api` for the backend
+  - `/admin` for the admin dashboard
+  - `/student` for the student portal
+- or as three separate Vercel projects if you prefer that setup
 
 ## Vercel Deployment
+
+### Zero-dashboard root deploy
+
+If you do not want to change anything in Vercel project settings, deploy the repository root as a single Vercel project.
+
+The root project now includes:
+
+- [vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/vercel.json) to force `public` as the output directory and use the root build command
+- [src/app.ts](/home/max-cleetus/Videos/canteen%20management%20system/src/app.ts) to expose the backend Express app from the repo root
+- [scripts/vercel-build.mjs](/home/max-cleetus/Videos/canteen%20management%20system/scripts/vercel-build.mjs) to build `backend`, `admin`, and `student`, then publish:
+  - `/api`
+  - `/admin`
+  - `/student`
+
+For this mode, the repository root is the Vercel project root and no Output Directory change is needed in the dashboard.
+
+### Three-project deploy
 
 Create three Vercel projects and set each project's Root Directory:
 
@@ -81,7 +100,14 @@ Set `VITE_SOCKET_URL` only if you later move realtime updates to a dedicated pro
 
 ## If Vercel Says "No Output Directory named public"
 
-That means the project is being treated like a static frontend with `public` configured as the output directory. For this repo:
+That error is now handled in-code for root deployments, because the repository generates a root `public/` directory during the build.
+
+If you are using the root deploy:
+
+- keep the project root at the repository root
+- do not change the Output Directory in Vercel
+
+If you are using the three-project setup:
 
 - `admin` should build to `dist`
 - `student` should build to `dist`
