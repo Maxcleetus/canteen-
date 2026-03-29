@@ -16,8 +16,8 @@ If you do not want to change anything in Vercel project settings, deploy the rep
 
 The root project now includes:
 
-- [vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/vercel.json) to force `public` as the output directory and use the root build command
-- [src/app.ts](/home/max-cleetus/Videos/canteen%20management%20system/src/app.ts) to expose the backend Express app from the repo root
+- [vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/vercel.json) to force `public` as the output directory, set the root project framework to `Other`, and rewrite `/api/:path*` into the root API function
+- [api/index.ts](/home/max-cleetus/Videos/canteen%20management%20system/api/index.ts) to forward Vercel Function requests into the existing Express app in `backend/src/app.ts`
 - [scripts/vercel-build.mjs](/home/max-cleetus/Videos/canteen%20management%20system/scripts/vercel-build.mjs) to build `backend`, `admin`, and `student`, then publish:
   - `/api`
   - `/admin`
@@ -100,7 +100,7 @@ Set `VITE_SOCKET_URL` only if you later move realtime updates to a dedicated pro
 
 ## If Vercel Says "No Output Directory named public"
 
-That error is now handled in-code for root deployments, because the repository generates a root `public/` directory during the build.
+That error is now handled in-code for root deployments, because the repository generates a root `public/` directory during the build and serves the backend through [api/index.ts](/home/max-cleetus/Videos/canteen%20management%20system/api/index.ts) instead of framework-level Express detection.
 
 If you are using the root deploy:
 
