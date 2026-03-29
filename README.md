@@ -47,6 +47,8 @@ Optional:
 
 - `VITE_SOCKET_URL`
 
+The admin app includes [admin/vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/admin/vercel.json) so Vercel always uses `dist` as the output directory.
+
 ### Student project
 
 Copy `student/.env.example` into Vercel environment variables:
@@ -56,6 +58,8 @@ Copy `student/.env.example` into Vercel environment variables:
 Optional:
 
 - `VITE_SOCKET_URL`
+
+The student app includes [student/vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/student/vercel.json) so Vercel always uses `dist` as the output directory.
 
 ## Realtime on Vercel
 
@@ -74,6 +78,16 @@ After deploying the backend, use its URL in the frontend projects:
 - `VITE_API_BASE_URL=https://your-backend-project.vercel.app/api`
 
 Set `VITE_SOCKET_URL` only if you later move realtime updates to a dedicated provider that supports WebSockets outside Vercel Functions.
+
+## If Vercel Says "No Output Directory named public"
+
+That means the project is being treated like a static frontend with `public` configured as the output directory. For this repo:
+
+- `admin` should build to `dist`
+- `student` should build to `dist`
+- `backend` should be a separate Vercel project with Root Directory set to `backend`
+
+If the dashboard still shows `public`, clear that setting or redeploy after the included `vercel.json` files are picked up.
 
 ## Backend Build Notes
 
