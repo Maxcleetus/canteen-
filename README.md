@@ -101,6 +101,8 @@ After deploying the backend, use its URL in the frontend projects:
 
 - `VITE_API_BASE_URL=https://your-backend-project.vercel.app/api`
 
+Do not point `VITE_API_BASE_URL` at a protected preview URL like `*-git-main-*.vercel.app/api`, because Vercel Authentication will block browser requests before your backend CORS middleware runs.
+
 Set `VITE_SOCKET_URL` only if you later move realtime updates to a dedicated provider that supports WebSockets outside Vercel Functions.
 
 ## If Vercel Says "No Output Directory named public"

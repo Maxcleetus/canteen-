@@ -1,9 +1,3 @@
-const DEFAULT_ALLOWED_ORIGIN_PATTERNS = [
-  /^https?:\/\/localhost(?::\d+)?$/i,
-  /^https?:\/\/127\.0\.0\.1(?::\d+)?$/i,
-  /^https:\/\/[a-z0-9-]+\.vercel\.app$/i
-];
-
 const parseConfiguredOrigins = () =>
   (process.env.CORS_ALLOWED_ORIGINS || '')
     .split(',')
@@ -16,6 +10,10 @@ export const isAllowedOrigin = (origin: string | undefined) => {
   }
 
   const configuredOrigins = parseConfiguredOrigins();
+  if (configuredOrigins.length === 0) {
+    return true;
+  }
+
   if (configuredOrigins.includes('*')) {
     return true;
   }
@@ -24,7 +22,7 @@ export const isAllowedOrigin = (origin: string | undefined) => {
     return true;
   }
 
-  return DEFAULT_ALLOWED_ORIGIN_PATTERNS.some((pattern) => pattern.test(origin));
+  return false;
 };
 
 export const applyCorsHeaders = (requestOrigin: string | undefined, response: { header: (key: string, value: string) => unknown }) => {
