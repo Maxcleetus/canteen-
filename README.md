@@ -47,6 +47,7 @@ Copy `backend/.env.example` into Vercel environment variables:
 
 - `DATABASE_URL`
 - `JWT_SECRET`
+- `CORS_ALLOWED_ORIGINS`
 - `STRIPE_SECRET_KEY`
 - `STRIPE_PUBLISHABLE_KEY`
 - `ADMIN_EMAIL`
@@ -57,6 +58,8 @@ Copy `backend/.env.example` into Vercel environment variables:
 - `CLOUDINARY_DISHES_FOLDER`
 
 The backend app includes [backend/vercel.json](/home/max-cleetus/Videos/canteen%20management%20system/backend/vercel.json) so a separate backend Vercel project does not inherit a stale static output directory like `public`.
+
+`CORS_ALLOWED_ORIGINS` is optional. If you set it, use a comma-separated list such as `https://your-admin.vercel.app,https://your-student.vercel.app`. If you leave it empty, the backend allows localhost and `*.vercel.app` origins by default.
 
 ### Admin project
 
