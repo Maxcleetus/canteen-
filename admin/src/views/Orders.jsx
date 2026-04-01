@@ -31,7 +31,7 @@ const OrdersView = () => {
     }
 
     const socket = io(SOCKET_URL, {
-      transports: ['websocket', 'polling']
+      transports: ['polling', 'websocket']
     });
     socket.on('new-order', (order) => {
       setOrders(prev => {

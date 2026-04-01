@@ -162,7 +162,7 @@ const StudentPortal = ({ user, onLogout }) => {
     }
 
     const socket = io(SOCKET_URL, {
-      transports: ['websocket', 'polling']
+      transports: ['polling', 'websocket']
     });
     socket.on('new-order', () => {
       loadCanteenOverview();
@@ -461,7 +461,8 @@ const StudentPortal = ({ user, onLogout }) => {
                                 </div>
                               </div>
                               <div className="p-4 flex flex-col flex-1">
-                                <h3 className="font-bold text-base text-white mb-2 group-hover:text-purple-400 transition-colors">{item.name}</h3>
+                                <h3 className="font-bold text-base text-white mb-1 group-hover:text-purple-400 transition-colors">{item.name}</h3>
+                                <p className="text-xs text-slate-400 mb-3 font-medium">Stock: <span className={item.stock > 10 ? 'text-green-400' : (item.stock > 0 ? 'text-orange-400' : 'text-red-400')}>{item.stock} left</span></p>
                                 <div className="mt-auto flex justify-end">
                                   <button onClick={() => updateCart(item, 1)} className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-green-500/20 hover:from-purple-500/40 hover:to-green-500/40 border border-white/10 text-white text-xs font-bold rounded-lg transition-all flex items-center">
                                     Quick Add <Plus className="w-3 h-3 ml-1" />
@@ -498,6 +499,7 @@ const StudentPortal = ({ user, onLogout }) => {
                           <div className="p-4 flex flex-col flex-1 z-10">
                             <h3 className="font-bold text-lg text-white mb-1 group-hover:text-green-400 transition-colors">{item.name}</h3>
                             <p className="text-slate-400 text-sm flex-1">{item.description || item.category?.name}</p>
+                            <p className="text-xs text-slate-500 mt-2 font-medium">Stock: <span className={item.stock > 10 ? 'text-green-400' : (item.stock > 0 ? 'text-orange-400' : 'text-red-400')}>{item.stock} left</span></p>
                             
                             <div className="mt-4 flex items-center justify-between">
                               <span className="text-xs text-slate-500 flex items-center"><Clock className="w-3 h-3 mr-1"/> 10-15m</span>
